@@ -3,24 +3,80 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Resume-Demo</title>
+	<style>
+		.loadingWrapper {
+			height:100%;
+			width: 100%;
+			position: fixed;
+			top: 0;
+			left: 0;
+			background-color: #999;
+			display: none;
+			z-index: 1;
+		}
+		.active {
+			display: block;
+		}
+		.loading::before, .loading::after {
+			position: absolute;
+			top: 0; left: 0; right: 0; bottom: 0;
+			margin: auto;
+			content: '';
+			width: 80px;
+			height: 80px;
+			border-radius: 50%;
+			background-color: black;
+			animation: change 1.5s linear infinite;
+		}
+		.loading::after {
+			opacity: 0;
+			animation-delay: 0.75s;
+		}
+		@keyframes change {
+			0% {
+				width: 0; height: 0; opacity: 1;
+			}
+			100% {
+				width: 80px, height: 80px; opacity: 0;
+			}
+		}
+
+	</style>
 	<link rel="stylesheet" href="style/style.css">
 	<script src="//at.alicdn.com/t/font_1076510_aq9gau4djd.js"></script>
 </head>
 <body>
-	<div class="topNavBar">
+	<div id="loadingWrapper" class="loadingWrapper active">
+		<div class="loading"></div>
+	</div>
+	<div id="topNavBar" class="topNavBar">
 		<div class="clearfix">		
 			<a href="#" class="logo">
 				<span class="rs">RS</span><span class="card">Card</span>
 			</a>
 			<nav>
 				<ul class="clearfix">
-					<li><a href="#">关于</a></li>
-					<li><a href="#">技能</a></li>
-					<li><a href="#">作品</a></li>
-					<li><a href="#">博客</a></li>
-					<li><a href="#">日历</a></li>
-					<li><a href="#">联系方式</a></li>
-					<li><a href="#">其他</a></li>
+					<li class="navLi"><a href="#resume">关于</a></li>
+					<li class="navLi"><a href="#skills">技能</a></li>
+					<li class="secondMenuContent navLi">
+						<a href="#portfilio">作品</a>
+						<ul class="secondMenu">
+							<li><a href="">作品1</a></li>
+							<li><a href="">作品1</a></li>
+							<li><a href="">作品1</a></li>
+						</ul>
+					</li>
+					<li class="secondMenuContent navLi">
+						<a href="#">博客</a>
+						<ul class="secondMenu">
+							<li><a href="">博客1</a></li>
+							<li><a href="">博客1</a></li>
+							<li><a href="">博客1</a></li>
+						</ul>
+					</li>
+					<li class="navLi"><a href="#">日历</a></li>
+					<li class="navLi"><a href="#">联系方式</a></li>
+					<li class="navLi"><a href="#">其他</a></li>
 				</ul>
 			</nav>
 		</div>
@@ -28,7 +84,7 @@
 	<div class="backgroundImg">
 		<div class="mask"></div>
 	</div>
-	<div class="resume">
+	<div class="resume" id="resume">
 		<div class="clearfix">
 			<div class="photo">
 				<img src="img/photo.jpg" alt="" width="300" height="350">
@@ -67,7 +123,7 @@
 	</div>
 	<div class="download"><a href="resume.pdf" download>DOWNLOAD RESUME</a></div>
 	<p class="selfIntroduction">Say me fat, I eat you home rice la? I fat I confident, I fat I freedom. My mother don't care me you BB what?</p>
-	<section class="skills">
+	<section class="skills" id="skills">
 		<h2>Professional Skills</h2>
 		<div class="skills-box">
 			<ul class="clearfix">
@@ -110,7 +166,7 @@
 			</ul>
 		</div>
 	</section>
-	<section class="portfilio">
+	<section class="portfilio" id="portfilio">
 		<h2>Portfilio</h2>
 		<div class="bar">
 			<ul class="clearfix">
@@ -119,7 +175,7 @@
 				<li id="P3">UX DESIGN</li>
 			</ul>
 			<div class="barInner">
-				<div class="status-3" id="PBar"></div>
+				<div class="status-1" id="PBar"></div>
 			</div>
 		</div>
 		<div class="work">
@@ -132,15 +188,10 @@
 			</div>
 		</div>
 	</section>
+	<script src="./js/main.js"></script>
 	<script>
-		P1.onclick = function() {
-			PBar.className = 'status-1'
-		}
-		P2.onclick = function() {
-			PBar.className = 'status-2'
-		}
-		P3.onclick = function() {
-			PBar.className = 'status-3'
+		window.onload = function() {
+			document.getElementById('loadingWrapper').classList.remove('active')
 		}
 	</script>
 </body>

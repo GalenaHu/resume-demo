@@ -2,7 +2,7 @@
 * @Author: Galena
 * @Date:   2019-03-06 17:02:56
 * @Last Modified by:   Galena
-* @Last Modified time: 2019-03-09 14:47:41
+* @Last Modified time: 2019-03-20 15:56:29
 */
 body {
 	margin: 0;
@@ -29,13 +29,24 @@ h1, h2, h3 {
 	color: rgba(255,255,255,0.7);
 	position: fixed;
 	width: 100%;
+	padding: 20px 0;
+	transition: all 0.5s;
 }
 
+body .sticky {
+	background-color: white;
+	color: #3D4451;
+	transition: all 0.5s;
+	box-shadow: 0 0 5px 5px rgba(0,0,0,0.3);
+	z-index: 1;
+	padding: 10px 0;
+}
 
 .topNavBar > div {
 	max-width: 1300px;
 	min-width: 800px;
 	margin: 0 auto;
+
 }
 
 .clearfix::after {
@@ -76,8 +87,9 @@ nav > ul {
 nav > ul > li {
 	list-style: none;
 	float: left;
-	padding: 0 13px;
+	padding: 0 5px;
 	display: block;
+	margin: 0 8px;
 
 }
 
@@ -92,12 +104,56 @@ nav > ul > li > a {
 	border-left-width: 0;
 }
 
-nav > ul > li > a:hover {
-	border-bottom: 3px  solid #F2746C;
-
+nav > ul > .liActive:hover:after {
+	content: '';
+	display: block;
+	width: 100%;
+	height: 3px;
+	background-color: #F2746C;
+	animation: widthChange 0.1s linear;
 }
 
-
+@keyframes widthChange {
+	0% {
+		width: 0;
+	}
+	100% {
+		width: 100%;
+	}
+}
+nav > ul > .liActiveAll:after {
+	content: '';
+	display: block;
+	width: 100%;
+	height: 3px;
+	background-color: #F2746C;
+}
+.secondMenuContent {
+	position: relative;
+}
+.secondMenuContent .secondMenu {
+	position: absolute;
+	top: 100%;
+	right: 0;
+	white-space: nowrap;
+	background-color: white;
+	box-shadow: 0 0 5px 5px rgba(0,0,0,0.3);
+	color: #3D4451;
+	padding: 15px;
+	display: none;
+	animation: menuSlide 0.2s;
+}
+@keyframes menuSlide {
+	0% {
+		right:100%;
+	}
+	100% {
+		right:0;
+	}
+}
+.secondMenuContent .secondMenu > li {
+	padding: 5px;
+}
 .backgroundImg {
 	background-image: url("../img/backimg.jpg");
 	width: 100%;
